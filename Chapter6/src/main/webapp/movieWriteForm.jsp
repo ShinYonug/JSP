@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<th>시놉시스</th>
-			<td><%= movie.getSynopsis()%></td>
+			<td><textarea><%= movie.getSynopsis()%></textarea></td>
 		</tr>
 		<tr>
 			<th>장르</th>

@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> 
 <style type="text/css">
 #b01 { font-weight: bold;}
-div { float:right;}
+table tr div { float:right;}
 </style>
 </head>
 <body>
@@ -53,9 +53,8 @@ div { float:right;}
 					</select>
 				</td>
 			</tr>
-			<tr>
-				<td><input type="submit" value="확인" float: right;></td>
-				<td><input type="reset" value="취소" float: right;></td>
+			<tr >
+					<td ><input   type="submit" value="확인" style="float:right;"><input  type="reset" value="취소" style="float:right;" ></td>
 			</tr>
 		</table>
 	
