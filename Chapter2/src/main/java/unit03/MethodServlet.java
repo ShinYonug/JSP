@@ -15,7 +15,7 @@ public class MethodServlet extends HttpServlet {
     
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at:asdsad ").append(request.getContextPath());
+		response.getWriter().append("Served at:").append(request.getContextPath());
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print("get 방식으로 호출하였음");
