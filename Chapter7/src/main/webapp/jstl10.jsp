@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:out value= "Hello Wolrd"/>
+	<c:out value 
 </body>
 </html>
