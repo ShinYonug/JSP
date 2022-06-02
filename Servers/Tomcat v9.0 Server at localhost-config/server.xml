@@ -17,7 +17,7 @@
 --><!-- Note:  A "Server" is not itself a "Container", so you may not
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
- --><Server port="8005" shutdown="SHUTDOWN">
+ --><Server port="8007" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -153,7 +153,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Chapter4" path="/Chapter4" reloadable="true" source="org.eclipse.jst.jee.server:Chapter4"/><Context docBase="Chapter5" path="/Chapter5" reloadable="true" source="org.eclipse.jst.jee.server:Chapter5"/><Context docBase="Chapter6" path="/Chapter6" reloadable="true" source="org.eclipse.jst.jee.server:Chapter6"/><Context docBase="Chapter2" path="/Chapter2" reloadable="true" source="org.eclipse.jst.jee.server:Chapter2"/><Context docBase="Chapter7" path="/Chapter7" reloadable="true" source="org.eclipse.jst.jee.server:Chapter7"/><Context docBase="Chapter8" path="/Chapter8" reloadable="true" source="org.eclipse.jst.jee.server:Chapter8"/></Host>
+      
+      <Context docBase="Chapter9" path="/Chapter9" reloadable="true" source="org.eclipse.jst.jee.server:Chapter9">
+      <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/myoracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:XE" username="scott"/>
+      </Context>
+      </Host>
     </Engine>
   </Service>
 </Server>
