@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src = "script/member.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
 	
 		<c:if test = "${result ==-1 }">
 			${userid }는 사용 가능한 아이디입니다.
-			<input type="button" value = "사용" class="cancle" onclick="idok(${userid})">
+			<input type="button" value = "사용" class="cancle" onclick="idok()">
 		</c:if>
 	</form>
 </body>

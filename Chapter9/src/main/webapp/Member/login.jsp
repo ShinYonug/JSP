@@ -14,7 +14,7 @@
 			<tr>
 				<td>아이디</td>
 <%-- 				<td><input type="text" name="userid" value="${userid}"></td> --%>
-				<td><input type="text" name="userid" value="${userid}"></td>
+				<td><input type="text" name="userid" value="${pwd}"></td>
 			</tr>
 			<tr>
 				<td>암 호 </td>

@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+
+<%-- 
+<c:if test="${ empty loginUser}">
+	<jsp:forward page='login.do'></jsp:forward>
+</c:if>
+뭐징 이게 흠 --%>
+ <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -17,7 +23,7 @@
 			<tr>
 				<td colspan="2" align ="center">
 				<input type = "submit" value="로그아웃">
-				<input type = "button" value="회원정보변경" onclick="#">
+				<input type = "button" value="회원정보변경" onclick="location.href='memberUpdate.do?userid=${loginUser.userid}'">
 			</tr>
 			
 		</table>

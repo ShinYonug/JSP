@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		String url = "member/login.jsp";
+		String url = "Member/login.jsp";
 		
 		String userid = request.getParameter("userid");
 		String pwd = request.getParameter("pwd");
