@@ -21,7 +21,7 @@ import java.sql.*;
 	HIT               NUMBER        
 	SCORE             NUMBER(3,2)   
  */
-public class DataDAO {
+public class DataDAO {      //Data Access Object
    private Connection conn;
    private PreparedStatement ps;
    private final String URL="jdbc:mysql://localhost:3306/db0416?serverTimezone=UTC";
