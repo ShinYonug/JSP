@@ -254,29 +254,39 @@ public class BoardDAO {
 		
 		return chk;
 	}
-	public boolean boardSearch(String qr, String sel) {
+	public boolean boardSearch(String sel, String qr) {
 		boolean chk_no = false;
+		BoardVO vo = new BoardVO();
+		String chk = "";
 		try {
-			BoardVO vo = new BoardVO();
 			getConnection();
-			String chk = "";
-			String sql = "select "+sel+" from jspBoard2 where "+sel+" = ?";
+//			System.out.println("1");
+			String sql = "select no from jspBoard2 where " +sel +" = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, qr);
+//			System.out.println("2");
 			ResultSet rs = ps.executeQuery();
-			
-			if(rs.next()) {
-				chk = rs.getString(1);
+//			System.out.println("#");
+ 			if(rs.next()) {
+// 				System.out.print("3");
+ 				chk_no = true;
+ 				chk = rs.getString(1);
+// 				System.out.print("4");
+ 				
 				rs.close();
 			}
-			if(chk.equals(qr)) {
-			    
-				chk_no = true;
-				sql = "select no from jspBoard2 where "+sel+"="+qr;
-				ps = conn.prepareStatement(sql);
-				ps.executeQuery();
-				vo.setNo(rs.getInt(1));
-			}
+// 			System.out.println(chk.toString());
+// 			System.out.println("==9999"+Integer.parseInt(chk));
+ 			vo.setNo(Integer.parseInt(chk));
+// 			System.out.println(vo.getNo());
+ 			//			if(chk.equals(qr)) {
+//			    
+//				chk_no = true;
+//				sql = "select no from jspBoard2 where "+sel+"="+qr;
+//				ps = conn.prepareStatement(sql);
+//				ps.executeQuery();
+//				vo.setNo(rs.getInt(1));
+//			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

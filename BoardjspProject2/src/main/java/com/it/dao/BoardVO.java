@@ -6,6 +6,14 @@ public class BoardVO {
 	private String name, subject, content, pwd, dbday;
 	private int no, hit;
 	private Date regdate;
+	private String srch;
+	
+	public String getSrch() {
+		return srch;
+	}
+	public void setSrch(String srch) {
+		this.srch = srch;
+	}
 	public String getName() {
 		return name;
 	}

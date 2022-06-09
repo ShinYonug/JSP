@@ -155,7 +155,7 @@
 
       
       
-      <Context docBase="BoardjspProject2" path="/BoardjspProject2" reloadable="true" source="org.eclipse.jst.jee.server:BoardjspProject2"/><Context docBase="BoardJspProject" path="/BoardJspProject" reloadable="true" source="org.eclipse.jst.jee.server:BoardJspProject"/></Host>
+      <Context docBase="S_Mall_ver1.0" path="/S_Mall_ver1.0" reloadable="true" source="org.eclipse.jst.jee.server:S_Mall_ver1.0"/></Host>
     </Engine>
   </Service>
 </Server>

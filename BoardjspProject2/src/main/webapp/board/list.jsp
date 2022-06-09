@@ -74,6 +74,7 @@ h1 {
 					<th class="text-center" width=10%>조회수</th>
 				</tr>
 				<%
+				
 				for(BoardVO vo : list){
 				%>		
 				<tr>

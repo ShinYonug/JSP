@@ -13,7 +13,8 @@
 	boolean chk = dao.boardSearch(sel, qr);
 	
 	if(chk == true){
-		response.sendRedirect("detail.jsp?no="+vo.getNo());
+		System.out.print(vo.getNo());
+// 		response.sendRedirect("detail.jsp?no="+vo.getNo());
 	}else{
 %>
 		<script>
