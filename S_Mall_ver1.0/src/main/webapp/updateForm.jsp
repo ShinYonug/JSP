@@ -1,81 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*, javax.sql.*"%>
 <%
+	request.setCharacterEncoding("utf-8");
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	String custno = request.getParameter("custno");
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String id = "system";
 	String pwd = "1234";
-	String sql = "select max(custno) from member_table";
-	int custno = 10001;
+	String sql = "select * from member_table where custno= ?";
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url, id, pwd);
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, Integer.parseInt(custno));
 		rs = pstmt.executeQuery();
-		if(rs.next()){
-			custno = rs.getInt(1)+1;
-		}
-	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="./common.css"/>
 <title>Insert title here</title>
-<script type="text/javascript" src="./script/member.js"></script>
 </head>
 <body>
+
 	<%@ include file="header.jsp" %>
 	
 	<section>
-	<h3>쇼핑몰 회원 등록</h3>
-		<form action="joinImpl.jsp" method="post">
+	<h3>홈쇼핑 회원 정보 수정</h3>
+		<form action="updateImpl.jsp" method = "post">
+<%
+			if(rs.next()){
+%>
 			<table border="1" style="margin-left: auto; margin-right: auto;">
 				<tr>
-					<th>회원번호(자동발생)</th>
-					<td><input type="text" name="custno" value="<%=custno %>"><br></td>
+					<th>회원번호</th>
+					<td><input type="text" name="custno" value="<%=rs.getString(1) %>"><br></td>
 				</tr>
 				<tr>
 					<th>회원성명</th>
-					<td><input type="text" name="phone"></td>
+					<td><input type="text" name = "custname" value="<%=rs.getString(2) %>"><br></td>
 				</tr>
 				<tr>
 					<th>회원전화</th>
-					<td><input type="text" name="phone"></td>
+					<td><input type="text" name="phone" value="<%=rs.getString(3) %>"><br></td>
 				</tr>
 				<tr>
 					<th>회원주소</th>
-					<td><input type="text" name="address"></td>
+					<td><input type="text" name="address" value="<%=rs.getString(4) %>"><br></td>
 				</tr>
 				<tr>
 					<th>가입일자</th>
-					<td><input type="text" id="date" name="joindate"></td>
+					<td><input type="text" name="joindate" value="<%=rs.getString(5).substring(0,10) %>"><br></td>
 				</tr>
 				<tr>
 					<th>고객등급 [A:VIP B:일반 C:직원]</th>
-					<td><input type="text" id="fname" name="grade"></td>
+					<td><input type="text" name="grade" value="<%=rs.getString(6) %>"><br></td>
 				</tr>
 				<tr>
 					<th>도시코드</th>
-					<td><input type="text" id="city_num" name="city"></td>
+					<td><input type="text" name="city" value="<%=rs.getString(7) %>"><br></td>
 				</tr>
 				<tr>
 					<th colspan="2">
-						<input type="submit" value="등록" onclick="return joinCheck()" >
-	
-	                    <input type="button" value="조회" onclick="location.href='memberForm.jsp'">
+						<input type="submit" value="수 정">
+						<input type="button" value="조 회">
 					</th>
-				</tr>
+				</tr>		 
+			
 			</table>
+<%
+			}
+%>
 		</form>
 	
-	
-	</section>
-	
+	</section>	
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
@@ -84,12 +87,11 @@
 		e.printStackTrace();
 	}finally{
 		try{
-				if( rs != null) rs.close();
-				if( pstmt != null) pstmt.close();
-				if( conn != null) conn.close();
+			if( rs != null) rs.close();
+			if(pstmt != null ) pstmt.close();
+			if(conn != null) conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
-	
 %>

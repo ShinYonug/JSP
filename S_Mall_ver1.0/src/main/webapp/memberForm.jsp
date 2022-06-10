@@ -7,7 +7,7 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String url = "jdbc:oracle:@localhost:1521:xe";
-	String id = "root";
+	String id = "system";
 	String pwd = "1234";
 	String sql = "select * from member_table";
 	
@@ -39,11 +39,37 @@
 		</tr>
 <%
 		while(rs.next()){
-			String grade = "7직원";
-		}
+			String grade = "직원";
+			if(rs.getString(6).equals("A")) grade = "VIP";
+			else if(rs.getString(6).equals("B")) grade = "일반";
 %>		
-	
+		<tr>
+			<td><a href="updateForm.jsp?custno=<%=rs.getString("custno") %>"><%=rs.getString(1) %></a>
+			<td><%=rs.getString(2) %></td>
+			<td><%=rs.getString(3) %></td>
+			<td><%=rs.getString(4) %></td>
+			<td><%=rs.getString(5).substring(0, 10) %></td>
+			<td><%=grade %></td>
+			<td><%=rs.getString(7) %></td>
+		</tr>
+<%
+		}
+%>
+		</table>
 	</section>
-
+	<%@ include file="footer.jsp" %>
 </body>
 </html>
+<%
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		try{
+			if( rs != null) rs.close();
+			if( pstmt != null) pstmt.close();
+			if( conn != null) conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+%>
