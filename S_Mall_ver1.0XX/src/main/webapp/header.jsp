@@ -11,7 +11,7 @@
 	<nav>
 		<ul>
 			<li><a href="joinForm.jsp"> 회원등록</a>
-			<li><a href="updateForm.jsp"> 회원목록 조회/수정</a>
+			<li><a href="memberForm.jsp"> 회원목록 조회/수정</a>
 			<li><a href="saleForm.jsp"> 회원매출조회</a>
 			<li><a href="index.jsp"> 홈으로</a>
 		</ul>

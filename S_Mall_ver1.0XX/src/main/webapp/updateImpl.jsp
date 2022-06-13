@@ -9,7 +9,7 @@
 	String url="jdbc:oracle:thin:@localhost:1521:xe";
 	String id="system";
 	String pwd="1234";
-	String sql="update member_table set custno=?, custname=?, phone=?, address=?, joindate=?, grade=?, city=? where custno = ?";
+	String sql="update member_table set custname=?, phone=?, address=?, joindate=?, grade=?, city=? where custno = ?";
 	
 	String custno = request.getParameter("custno");
 	String custname = request.getParameter("custname");
@@ -44,5 +44,5 @@
 		}
 	}
 		
-	response.sendRedirect("memberForm.jsp");
+	response.sendRedirect("index.jsp");
 %>

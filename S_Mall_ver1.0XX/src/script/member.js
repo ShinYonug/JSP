@@ -1,4 +1,4 @@
-function joinChek(){
+function joinCheck(){
 	if(document.frm.custname.value.length == 0){
 		alert("회원성명이 입력되지 않았습니다.");
 		frm.custname.focus();
