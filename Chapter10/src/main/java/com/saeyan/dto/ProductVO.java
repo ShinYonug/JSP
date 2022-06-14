@@ -8,6 +8,6 @@ public class ProductVO{
 	private Integer code;
 	private String name;
 	private Integer price;
-	private String pictureurl;
+	private String pictureUrl;
 	private String description;
 }

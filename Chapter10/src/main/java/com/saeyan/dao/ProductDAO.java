@@ -37,7 +37,7 @@ public class ProductDAO {
 				pVo.setCode(rs.getInt("code"));
 				pVo.setName(rs.getString("name"));
 				pVo.setPrice(rs.getInt("price"));
-				pVo.setPictureurl(rs.getString("pictureurl"));
+				pVo.setPictureUrl(rs.getString("pictureUrl"));
 				pVo.setDescription(rs.getString("description"));
 				list.add(pVo);
 			}
@@ -62,7 +62,7 @@ public class ProductDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pVo.getName());
 			pstmt.setInt(2, pVo.getPrice());
-			pstmt.setString(3, pVo.getPictureurl());
+			pstmt.setString(3, pVo.getPictureUrl());
 			pstmt.setString(4, pVo.getDescription());
 			
 			result = pstmt.executeUpdate();
@@ -75,8 +75,8 @@ public class ProductDAO {
 		return result;
 	}
 
-	public ProductVO selectAllProducts(String code) {
-		ProductVO pVo = new ProductVO();
+	public ProductVO selectProductByCode(String code) {
+		ProductVO pVo = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -85,15 +85,16 @@ public class ProductDAO {
 		
 		try {
 			conn = DBManager.getConnection();
-			conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, code);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				pVo = new ProductVO();
 				pVo.setCode(rs.getInt(1));
 				pVo.setName(rs.getString(2));
 				pVo.setPrice(rs.getInt(3));
-				pVo.setPictureurl(rs.getString(4));
+				pVo.setPictureUrl(rs.getString(4));
 				pVo.setDescription(rs.getString(5));
 				
 			}
@@ -103,5 +104,46 @@ public class ProductDAO {
 			DBManager.closeConnection(conn , pstmt	,rs);
 		}
 		return pVo;
+	}
+
+	public void updateProduct(ProductVO pVo) {
+		String sql = "update product set name=?, price=?, pictureurl=?, description=? where code=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pVo.getName());
+			pstmt.setInt(2, pVo.getPrice());
+			pstmt.setString(3, pVo.getPictureUrl());
+			pstmt.setString(4, pVo.getDescription());
+			pstmt.setInt(5, pVo.getCode());
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			DBManager.closeConnection(conn, pstmt);
+		}
+		
+	}
+
+	public ProductVO DeleteProduct(String code) {
+		
+		String sql = "delete product where code = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.closeConnection(conn, pstmt);
+		}
+		return null;
 	}
 }

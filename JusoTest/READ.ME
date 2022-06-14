@@ -1,0 +1,13 @@
+# 주소검색 방법
+juso.go.kr
+api신청
+url(ip) http://localhost.8181(톰캣포트)
+승인키 획득: 
+jsp source 다운
+jusoPopup.jsp 안에
+function init(){
+	var url = location.href;
+	var confimKey= "승인키";획득한 승인키를 붙여넣기
+	
+	server.xml << -- <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/myoracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="scott"/>
+        

@@ -43,7 +43,7 @@ public class ProductWriteServlet extends HttpServlet {
 		pVo.setName(name);
 		pVo.setPrice(price);
 		pVo.setDescription(description);
-		pVo.setPictureurl(pictureUrl);
+		pVo.setPictureUrl(pictureUrl);
 		
 		
 		ProductDAO pDao = ProductDAO.getInstance();
@@ -53,7 +53,7 @@ public class ProductWriteServlet extends HttpServlet {
 		if( result == 1) {
 			response.sendRedirect("productList.do");
 		}else {
-			response.sendRedirect("/product/ProductWriteServlet");
+			response.sendRedirect("/product/productWrite.do");
 		}
 	
 	
