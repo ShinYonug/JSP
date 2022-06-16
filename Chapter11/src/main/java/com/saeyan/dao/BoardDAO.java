@@ -58,7 +58,7 @@ public class BoardDAO {
 	public void insertBoard(BoardVO bVo) {
 		String sql = "insert into board(num, name, email, pass, title, content) " 
 				+ " values(board_seq.nextval, ?,?,?,?,?)";
-
+		int justone = 0;
 	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -71,7 +71,6 @@ public class BoardDAO {
 			pstmt.setString(3, bVo.getPass());
 			pstmt.setString(4, bVo.getTitle());
 			pstmt.setString(5, bVo.getContent());
-			
 			pstmt.executeUpdate();
 		}catch(SQLException e ) {
 			e.printStackTrace();
@@ -80,6 +79,59 @@ public class BoardDAO {
 			DBManager.closeConnection(conn, pstmt);
 		}
 	
+	}
+
+	public int updateReadCount(String num) {
+		String sql = "update board set readcount = readcount +1 where num=?";
+		int result=-1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,Integer.parseInt(num));
+			result = 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.closeConnection(conn, pstmt);
+		}
+		return result;
+	}
+
+	public BoardVO SelectOneBoardByNum(String num) {
+		
+		BoardVO vo = new BoardVO();
+		
+		int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from board where num = ?";
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(num));
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo.setNum(rs.getInt("num"));
+				vo.setName(rs.getString("name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setPass(rs.getString("pass"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
+				vo.setReadcount(rs.getInt("readcount"));
+				vo.setWritedate(rs.getTimestamp("writedate"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			DBManager.closeConnection(conn, pstmt);
+		}
+				
+		return vo;
 	}
 
 
