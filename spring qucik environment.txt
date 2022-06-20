@@ -1,0 +1,62 @@
+Mybatis                             (oracle, mysql, h2?????)
+
+Legacy project>
+spring default (>> Sparing MVC Project 란이 안보일 때 Confiure templates >>Sparing default 제외하고 두개를 리무브)
+
+properties >> face java  ver.11 apache apply
+pom.xml >> java version 1.8 (plug in configuration source)
+(junit, java-ver,confi(source) //// lombok , oracle jdbc, mybatis, mybatisspring)    maven repositories
+/dependency
+<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->                           import    --lombok add
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.24</version>
+    <scope>provided</scope>
+</dependency>
+/dependency
+
+JUNIT   version >4.12
+
+oracle jdbc declaration>> pom.xml
+mybatis >> mybatis, spring >> pom.xml
+
+mybatis.org 
+
+
+xml에서 sqlsessionfactory build
+
+String resource = "org/mybatis/example/mybatis-config.xml";
+InputStream inputStream = Resources.getResourceAsStream(resource);
+SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+import ibatis  >> try catch >> try 안으로 sql세션 팩토리 넣기
+컴이젠마이바티스 패키지 안에 xml 파일 추가( mybatis-config)
+
+세션 팩토리 아래에 sql 세션 만들기
+SqlSession session = sqlSessionFactory.openSession();
+  BlogMapper mapper = session.getMapper(BlogMapper.class);
+  Blog blog = mapper.selectBlog(101);
+}
+
+xml>> driver>> orcle.jdbc.driver.OracleDriver
+     >> url >> jdbc:oracle:thin:@localhost1521:xe
+
+매퍼 xml 하나 더 만들어서 보드 메소드 인터페이스에서 함수를 가져다가 쓰는 xml 파일을 작성해준다
+이 파일은 전에 트라이 캐치문 이용해서 디비 연결하고 문장에 sql 담아서 getParameter 디비에 셋팅까지 했던 작업을
+자동으로 돌려주는 문서이다.
+
+/!-- xml 규칙저긍로 데이터를 표현하는 문서  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	세션 팩토리 빌딩(마이배티스매인)
+>>	트라이 캐치 돌리기
+>>	 팩토리 선언문 트라이 안으로 넣기
+>>	리소스 컨피그 명으로 xml 생성(마이배티ㅅ-콘피그)  {매퍼 주석처리}
+>>	xml 에서 url id pwd 연결
+>>(oracle 에서 테이블 생성하고 그랜드 리소스 디비에이 권한 주기)
+>>>	세선 겟 메퍼 불러오는 선언문은 인터페이스로 생성
+>>>	인터페이스 안에 메소드 생성하기
+>>	매핑된 sql 구문 땡겨오기 
+>>>	(보드매퍼) id 는 인터페이스 메소드 명이랑 일치 반환타입은 메소드 타입이랑 일치 파라미터 타입 인트값 sql문장 안에table명 수정
+>>> namespace == 보드메소드 주소 풀로 적기 {마이바티스콘피그 매퍼 주석해제 == 보드매퍼 풀 주소}

@@ -23,7 +23,6 @@ public class EmployeesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String command = request.getParameter("command");
-		String url = "EmployeesServlet?command=emp_list";
 
 		ActionFactory af = ActionFactory.getInstance();
 		Action action = af.getAction(command);

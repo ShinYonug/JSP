@@ -1,0 +1,6 @@
+      (1)Util.DBManger 커넥션 
+>>  (2)대표Servlet >> (3)command 값을 ActionFactory 전달
+>> (4)ActionFactory에서 command.equals 실행해서 서블릿 파일 인스턴스 생성{
+싱글톤 패턴 인스턴스 생성(매번 메모리를 할당하는 번거로움을 피해 메서드화)
+}>>(5)
+
